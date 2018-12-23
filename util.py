@@ -79,7 +79,7 @@ def load_data():
 
 
 def train(model,X_train,Y_train,X_test,Y_test,train_datagen,val_datagen):
-	learning_rate = 0.1
+	learning_rate = 0.001
 	lr_decay = 1e-6
 	lr_drop = 20
 	def lr_scheduler(epoch):
@@ -99,7 +99,7 @@ def train(model,X_train,Y_train,X_test,Y_test,train_datagen,val_datagen):
 
 	batch_size = 32
 	model.fit_generator(train_datagen.flow(X_train, Y_train, batch_size=batch_size),
-	                steps_per_epoch=len(X_train)//batch_size, epochs=30,
+	                steps_per_epoch=len(X_train)//batch_size, epochs=10,
 	                validation_data=val_datagen.flow(X_test, Y_test, batch_size=batch_size), 
 	                validation_steps=len(X_test)//batch_size,
 	                callbacks=callbacks, initial_epoch=0, shuffle=True, verbose=2)
