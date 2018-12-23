@@ -97,7 +97,7 @@ def train(model,X_train,Y_train,X_test,Y_test,train_datagen,val_datagen):
 	    reduce_lr
 	            ]
 
-	batch_size = 32
+	batch_size = 256
 	model.fit_generator(train_datagen.flow(X_train, Y_train, batch_size=batch_size),
 	                steps_per_epoch=len(X_train)//batch_size, epochs=10,
 	                validation_data=val_datagen.flow(X_test, Y_test, batch_size=batch_size), 
@@ -108,11 +108,12 @@ def train(model,X_train,Y_train,X_test,Y_test,train_datagen,val_datagen):
 
 
 def test(model,X_train,Y_train,X_test,Y_test,train_datagen,val_datagen):
+	batch_size = 256
 	model.compile(
 	    optimizer=keras.optimizers.Adam(lr=1e-4), 
 	    loss='categorical_crossentropy', metrics=['accuracy']
 	)
-	score = model.evaluate_generator(val_datagen.flow(X_test, Y_test), steps=len(X_test)/256, use_multiprocessing=False, verbose=2)
+	score = model.evaluate_generator(val_datagen.flow(X_test, Y_test), steps=len(X_test)/batch_size, use_multiprocessing=False, verbose=2)
 	loss = score[0]
 	acc = score[1]
 	print('loss:',loss)
