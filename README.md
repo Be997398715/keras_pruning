@@ -8,3 +8,5 @@ Pleas read readme.txt first, thera are what i want to speak.
 Reference：
 https://github.com/jacobgil/pytorch-pruning
 https://github.com/geifmany/cifar-vgg
+
+Any questions please connect to me : QQ 997398715
