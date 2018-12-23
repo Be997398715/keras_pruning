@@ -328,12 +328,12 @@ if __name__ == '__main__':
 			print('重新训练............%')
 			model = train(model,X_train,Y_train,X_test,Y_test,train_datagen,val_datagen)
 			model, loss, acc = test(model,X_train,Y_train,X_test,Y_test,train_datagen,val_datagen)
-			if(int(acc)>80):
+			if(int(acc)>0.9):
 				model.save('logs/weights/'+'iter_'+str(iter+1)+'_prune_model.h5')
 				print('剪枝模型已保存！\r\n')
 			else:
 				model = train(model,X_train,Y_train,X_test,Y_test,train_datagen,val_datagen)
 				model, loss, acc = test(model,X_train,Y_train,X_test,Y_test,train_datagen,val_datagen)
-				if(int(acc)>80):
+				if(int(acc)>0.9):
 					model.save('logs/weights/'+'iter_'+str(iter+1)+'_prune_model.h5')
 					print('剪枝模型已保存！\r\n')
