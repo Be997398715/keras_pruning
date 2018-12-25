@@ -12,6 +12,10 @@ from keras.layers.core import Lambda
 from keras import backend as K
 from keras import regularizers
 
+# num_classes = 10
+# weight_decay = 0.0000     //0.0005
+# x_shape = [32,32,3]
+# dropout = 0.0             //0.2
 
 def build_model(x_shape,weight_decay,num_classes,dropout):
     # Build the network of vgg for 10 classes with massive dropout and weight decay as described in the paper.
