@@ -24,80 +24,80 @@ def build_model(x_shape,weight_decay,num_classes,dropout):
     model.add(BatchNormalization())
     model.add(Dropout(dropout))
 
-    model.add(Conv2D(61, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+    model.add(Conv2D(60, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
     model.add(Activation('relu'))
     model.add(BatchNormalization())
 
     model.add(MaxPooling2D(pool_size=(2, 2)))
-
-    model.add(Conv2D(120, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-    model.add(Activation('relu'))
-    model.add(BatchNormalization())
-    model.add(Dropout(dropout))
 
     model.add(Conv2D(114, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
     model.add(Activation('relu'))
     model.add(BatchNormalization())
-
-    model.add(MaxPooling2D(pool_size=(2, 2)))
-
-    model.add(Conv2D(205, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-    model.add(Activation('relu'))
-    model.add(BatchNormalization())
     model.add(Dropout(dropout))
 
-    model.add(Conv2D(220, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-    model.add(Activation('relu'))
-    model.add(BatchNormalization())
-    model.add(Dropout(dropout))
-
-    model.add(Conv2D(124, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+    model.add(Conv2D(108, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
     model.add(Activation('relu'))
     model.add(BatchNormalization())
 
     model.add(MaxPooling2D(pool_size=(2, 2)))
 
-
-    model.add(Conv2D(361, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+    model.add(Conv2D(183, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
     model.add(Activation('relu'))
     model.add(BatchNormalization())
     model.add(Dropout(dropout))
 
-    model.add(Conv2D(424, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+    model.add(Conv2D(195, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+    model.add(Activation('relu'))
+    model.add(BatchNormalization())
+    model.add(Dropout(dropout))
+
+    model.add(Conv2D(118, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+    model.add(Activation('relu'))
+    model.add(BatchNormalization())
+
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+
+
+    model.add(Conv2D(109, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+    model.add(Activation('relu'))
+    model.add(BatchNormalization())
+    model.add(Dropout(dropout))
+
+    model.add(Conv2D(165, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
     model.add(Activation('relu'))
     model.add(BatchNormalization())
     model.add(Dropout(0.9))
 
-    model.add(Conv2D(509, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+    model.add(Conv2D(189, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
     model.add(Activation('relu'))
     model.add(BatchNormalization())
 
     model.add(MaxPooling2D(pool_size=(2, 2)))
 
 
-    model.add(Conv2D(13, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+    model.add(Conv2D(7, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
     model.add(Activation('relu'))
     model.add(BatchNormalization())
     model.add(Dropout(dropout))
 
-    model.add(Conv2D(54, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+    model.add(Conv2D(27, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
     model.add(Activation('relu'))
     model.add(BatchNormalization())
     model.add(Dropout(dropout))
 
-    model.add(Conv2D(4, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+    model.add(Conv2D(2, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
     model.add(Activation('relu'))
     model.add(BatchNormalization())
 
     model.add(MaxPooling2D(pool_size=(2, 2)))
-    model.add(Dropout(0.5))
+    model.add(Dropout(dropout))
 
     model.add(Flatten())
     model.add(Dense(512,kernel_regularizer=regularizers.l2(weight_decay)))
     model.add(Activation('relu'))
     model.add(BatchNormalization())
 
-    model.add(Dropout(0.5))
+    model.add(Dropout(dropout))
     model.add(Dense(num_classes))
     model.add(Activation('softmax'))
     return model
