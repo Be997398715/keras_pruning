@@ -87,8 +87,8 @@ def count_conv2d_filters(layer_config):
 name:			computer_activition(model,Conv2D_layer_config,X_test)
 function：		计算前向传播激活函数输出并得到相关信息
 parameters:		model -- 被剪枝的模型
-				Conv2D_layer_config -- 模型中的卷积层信息
-				X_test -- 进行前向传播的测试数据
+			Conv2D_layer_config -- 模型中的卷积层信息
+			X_test -- 进行前向传播的测试数据
 return：			pre_prune_target -- 预剪枝信息(卷积核层名称，卷积核层对象，卷积核通道数)
 '''''''''''''''''''''
 def computer_activition(model,Conv2D_layer_config,X_test):
@@ -166,8 +166,8 @@ def computer_activition(model,Conv2D_layer_config,X_test):
 name:			get_real_prune_config(pre_prune_target,prune_channles,Conv2D_layer_config)
 function：		得到最低排序后真正要剪枝的卷积核相关信息
 parameters:		num_filters_to_prune_per_iteration -- 一次剪枝的卷积核个数
-				pre_prune_target -- 被剪枝的目标
-				Conv2D_layer_config -- 模型中的卷积层信息
+			pre_prune_target -- 被剪枝的目标
+			Conv2D_layer_config -- 模型中的卷积层信息
 return：			prune_target -- 真正的剪枝信息(卷积核层名称，卷积核层对象，卷积核通道数)
 '''''''''''''''''''''
 def get_real_prune_config(num_filters_to_prune_per_iteration,pre_prune_target,Conv2D_layer_config):
@@ -198,7 +198,7 @@ def get_real_prune_config(num_filters_to_prune_per_iteration,pre_prune_target,Co
 name:			get_list_number(List)
 function：		通过剪枝的卷积核列表得到要写入文件的信息
 parameters:		prune_information_path -- 文件路径
-				prune_target -- 被剪枝的目标
+			prune_target -- 被剪枝的目标
 return：			information -- 写入文件的信息
 '''''''''''''''''''''
 def get_list_number(List):
@@ -220,7 +220,7 @@ def get_list_number(List):
 name:			write_prune_information(iter,prune_information_path,prune_target)
 function：		将剪枝的卷积核相关信息写入文件
 parameters:		prune_information_path -- 文件路径
-				prune_target -- 被剪枝的目标
+			prune_target -- 被剪枝的目标
 return：			None
 '''''''''''''''''''''
 def write_prune_information(iter,prune_information_path,prune_target):
@@ -332,7 +332,7 @@ if __name__ == '__main__':
 			print(model.summary())
 			# model.save('logs/weights/'+'iter_'+str(iter+1)+'_prune_model.h5')
 
-
+#建议接下来的重新训练使用手动完成，因为这里的直接训练没有改变参数，可能不会达到你要的效果
 			print('重新训练............%')
 			model = train(model,X_train,Y_train,X_test,Y_test,train_datagen,val_datagen)
 			model, loss, acc = test(model,X_train,Y_train,X_test,Y_test,train_datagen,val_datagen)
