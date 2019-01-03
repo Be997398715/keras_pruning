@@ -33,7 +33,7 @@ from util import normalize,load_data,train,test
 name:			computer_prune_config(model)
 function：		得到模型卷积核信息(对象,名称，通道数)
 parameters:		model -- 模型
-return：			model_prune_layers_config -- 卷积核信息
+return：		model_prune_layers_config -- 卷积核信息
 '''''''''''''''''''''
 def computer_prune_config(model):
 	model_config = model.get_config()
@@ -70,7 +70,7 @@ def computer_prune_config(model):
 name:			count_conv2d_filters(layer_config)
 function：		计算模型的总卷积核个数
 parameters:		layer_config -- 模型中的卷积层信息
-return：			number_of_filters -- 总卷积核个数
+return：		number_of_filters -- 总卷积核个数
 '''''''''''''''''''''
 def count_conv2d_filters(layer_config):
 	model_layers_channle = layer_config['channle']
@@ -89,7 +89,7 @@ function：		计算前向传播激活函数输出并得到相关信息
 parameters:		model -- 被剪枝的模型
 			Conv2D_layer_config -- 模型中的卷积层信息
 			X_test -- 进行前向传播的测试数据
-return：			pre_prune_target -- 预剪枝信息(卷积核层名称，卷积核层对象，卷积核通道数)
+return：		pre_prune_target -- 预剪枝信息(卷积核层名称，卷积核层对象，卷积核通道数)
 '''''''''''''''''''''
 def computer_activition(model,Conv2D_layer_config,X_test):
 	model_config = model.get_config()
@@ -168,7 +168,7 @@ function：		得到最低排序后真正要剪枝的卷积核相关信息
 parameters:		num_filters_to_prune_per_iteration -- 一次剪枝的卷积核个数
 			pre_prune_target -- 被剪枝的目标
 			Conv2D_layer_config -- 模型中的卷积层信息
-return：			prune_target -- 真正的剪枝信息(卷积核层名称，卷积核层对象，卷积核通道数)
+return：		prune_target -- 真正的剪枝信息(卷积核层名称，卷积核层对象，卷积核通道数)
 '''''''''''''''''''''
 def get_real_prune_config(num_filters_to_prune_per_iteration,pre_prune_target,Conv2D_layer_config):
 	# 得到排名最低的512个卷积核通道
@@ -199,7 +199,7 @@ name:			get_list_number(List)
 function：		通过剪枝的卷积核列表得到要写入文件的信息
 parameters:		prune_information_path -- 文件路径
 			prune_target -- 被剪枝的目标
-return：			information -- 写入文件的信息
+return：		information -- 写入文件的信息
 '''''''''''''''''''''
 def get_list_number(List):
 	myset = set(List)
@@ -221,7 +221,7 @@ name:			write_prune_information(iter,prune_information_path,prune_target)
 function：		将剪枝的卷积核相关信息写入文件
 parameters:		prune_information_path -- 文件路径
 			prune_target -- 被剪枝的目标
-return：			None
+return：		None
 '''''''''''''''''''''
 def write_prune_information(iter,prune_information_path,prune_target):
 	prune_config = {}
@@ -268,7 +268,7 @@ if __name__ == '__main__':
 	prune = True
 	if prune:
 
-		num_filters_to_prune_per_iteration = 512
+		num_filters_to_prune_per_iteration = 1024
 		prune_information_path = 'logs/prune_information/prune.txt'
 
 		# 得到准备剪枝的 '卷积层' 信息
@@ -332,7 +332,7 @@ if __name__ == '__main__':
 			print(model.summary())
 			# model.save('logs/weights/'+'iter_'+str(iter+1)+'_prune_model.h5')
 
-#建议接下来的重新训练使用手动完成，因为这里的直接训练没有改变参数，可能不会达到你要的效果
+			#建议接下来的重新训练使用手动完成，因为这里的直接训练没有改变参数，可能不会达到你要的效果
 			print('重新训练............%')
 			model = train(model,X_train,Y_train,X_test,Y_test,train_datagen,val_datagen)
 			model, loss, acc = test(model,X_train,Y_train,X_test,Y_test,train_datagen,val_datagen)
